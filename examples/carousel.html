@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>Bootstrap 3 Carousel  -CanvasJS JavaScript Charts</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="../bootstrap.min.css">
+
+  <script type="text/javascript" src="../jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="../bootstrap.min.js"></script>
+  <script type="text/javascript" src="../canvasjs.min.js"></script>
+
+  <style id="compiled-css" type="text/css">
+  .carousel-control {
+  position: absolute;
+  top: 150px;
+  left: 15px;
+  width: 40px;
+  height: 40px;
+  //margin-top: -20px;
+  font-size: 60px;
+  font-weight: 100;
+  line-height: 30px;
+  background-image: none !important;
+  filter: none !important;
+  text-align: center;
+  -webkit-border-radius: 23px;
+     -moz-border-radius: 23px;
+          border-radius: 23px;
+}
+
+.glyphicon{
+    font-size: 60px;
+    color: black;
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+  </style>
+
+</head>
+<body>
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="active item">
+        <div id="chartContainer1" class="chart" style="width:100%; height:360px;"></div>
+      </div>
+      <div class="item">
+        <div id="chartContainer2" class="chart" style="width:100%; height:360px;"></div>
+      </div>
+      <div class="item">
+        <div id="chartContainer3" class="chart" style="width:100%; height:360px;"></div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+  </div>
+  <!-- Carousel -->
+<!-- Carousel -->
+
+  <script>
+  var chart;
+  var charts = [];
+  var width;
+  var height;
+
+  width = $('#carousel-example-generic').width();
+  height = $('#carousel-example-generic').height();
+
+  $('.carousel').carousel({
+    interval: false,
+  });
+
+  chart = new CanvasJS.Chart("chartContainer1", {
+    title: {
+      text: "Column Chart"
+    },
+    width: width,
+    height: height,
+    data: [{
+      type: "column",
+      dataPoints: [{
+        x: 10,
+        y: 171
+      }, {
+        x: 20,
+        y: 155
+      }, {
+        x: 30,
+        y: 150
+      }, {
+        x: 40,
+        y: 165
+      }, {
+        x: 50,
+        y: 195
+      }, {
+        x: 60,
+        y: 168
+      }, {
+        x: 70,
+        y: 128
+      }, {
+        x: 80,
+        y: 134
+      }, {
+        x: 90,
+        y: 114
+      }]
+    }]
+  });
+  chart.render();
+  charts.push(chart);
+
+  chart = new CanvasJS.Chart("chartContainer2", {
+    title: {
+      text: "Line Chart"
+    },
+    width: width,
+    height: height,
+    data: [{
+      type: "line",
+      dataPoints: [{
+        x: 10,
+        y: 71
+      }, {
+        x: 20,
+        y: 55
+      }, {
+        x: 30,
+        y: 50
+      }, {
+        x: 40,
+        y: 65
+      }, {
+        x: 50,
+        y: 95
+      }, {
+        x: 60,
+        y: 68
+      }, {
+        x: 70,
+        y: 28
+      }, {
+        x: 80,
+        y: 34
+      }, {
+        x: 90,
+        y: 14
+      }]
+    }]
+  });
+  chart.render();
+  charts.push(chart);
+
+  chart = new CanvasJS.Chart("chartContainer3", {
+    title: {
+      text: "Area Chart"
+    },
+    width: width,
+    height: height,
+    data: [{
+      type: "area",
+      dataPoints: [{
+        x: 10,
+        y: 71
+      }, {
+        x: 20,
+        y: 55
+      }, {
+        x: 30,
+        y: 50
+      }, {
+        x: 40,
+        y: 65
+      }, {
+        x: 50,
+        y: 95
+      }, {
+        x: 60,
+        y: 68
+      }, {
+        x: 70,
+        y: 28
+      }, {
+        x: 80,
+        y: 34
+      }, {
+        x: 90,
+        y: 14
+      }]
+    }]
+  });
+  chart.render();
+  charts.push(chart);
+
+  $(window).resize(function() {
+    for (var i = 0; i < charts.length; i++) {
+      charts[i].options.width = $('.carousel').width();
+      charts[i].options.height = $('.carousel').height();
+      charts[i].render();
+    }
+  });
+
+  </script>
+</body>
+</html>
